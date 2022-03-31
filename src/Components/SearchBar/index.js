@@ -29,13 +29,8 @@ function SearchBar({
             return;
         }
 
-        // Avoid calling the API by accident when the
-        // input has a value like: 'City - Region - Country'
-        if (city.includes("-")) {
-            return;
-        }
-
         try {
+            console.log('fetchei')
             const response = await fetch(`${process.env.REACT_APP_URL_OW_GC}${city}&limit=5&appid=${process.env.REACT_APP_API_KEY_OW}`);
 
             if (response.ok) {
@@ -80,7 +75,6 @@ function SearchBar({
     // when user clicks back to SearchBar input
     function handleFocus() {
         document.getElementById("SearchBar__results").style.display = "block";
-        document.activeElement.value = "";
     }
 
     // When the user clicks outside of the
