@@ -4,6 +4,7 @@ import SearchBar from "../SearchBar";
 
 function Navbar({
     loadingCoord,
+    permissionCoord,
     getCoordinates,
     getWeather,
     setLoading }) {
@@ -12,6 +13,7 @@ function Navbar({
         <div className="Nav">
             <Location
                 loadingCoord={loadingCoord}
+                permissionCoord={permissionCoord}
                 getCoordinates={getCoordinates} />
 
             <SearchBar

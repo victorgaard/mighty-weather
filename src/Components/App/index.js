@@ -9,6 +9,7 @@ function App() {
 	const [timezone, setTimezone] = useState();
 	const [loading, setLoading] = useState(false);
 	const [loadingCoord, setLoadingCoord] = useState(false);
+	const [permissionCoord, setPermissionCoord] = useState(true);
 
 	useEffect(() => {
 		setTimeout(() => {
@@ -30,6 +31,7 @@ function App() {
 
 		function success(pos) {
 			setLoadingCoord(true);
+			setPermissionCoord(true);
 			setLoading(true);
 			const crd = pos.coords;
 			const lat = crd.latitude.toString();
@@ -38,6 +40,7 @@ function App() {
 		};
 
 		function error(err) {
+			setPermissionCoord(false);
 			console.log(`ERROR(${err.code}): ${err.message}`);
 		};
 
@@ -103,6 +106,7 @@ function App() {
 			<div className="Container">
 				<Navbar
 					loadingCoord={loadingCoord}
+					permissionCoord={permissionCoord}
 					getCoordinates={getCoordinates}
 					getWeather={getWeather}
 					setLoading={setLoading} />

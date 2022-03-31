@@ -102,6 +102,38 @@ p {
   background-color: #19262C;
 }
 
+.Nav__button--denied {
+  cursor: pointer;
+  width: 54px;
+  height: 54px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  background-color: #623A42;
+}
+
+.Nav__button--denied:hover {
+  background-color: #6f3e49;
+  box-shadow: 0px 2px 10px rgb(255, 87, 95, 0.3);
+}
+
+.Nav__button--denied:hover + .Nav__coords--denied  {
+  display: block;
+}
+
+.Nav__coords--denied {
+  animation: fadeInUp 0.3s;
+  position: absolute;
+  gap: 8px;
+  display: flex;
+  background: #30444E;
+  padding: 12px 16px 16px 16px;
+  width: 384px;
+  top: 88px;
+  border-radius: 4px;
+  box-shadow: 0 10px 30px rgb(0,0,0,.15);
+  display: none;
+}
+
 .SearchBar {
   width: 100%;
 }
@@ -305,6 +337,10 @@ p {
   .Container {
     width: 100%;
     padding: 0 24px;
+  }
+
+  .Nav__coords--denied {
+    width: 87vw;
   }
 
   .SearchBar__img--loading {
