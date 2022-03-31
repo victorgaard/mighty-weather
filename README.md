@@ -2,7 +2,7 @@
 
 Mighty Weather App is a React App I created to practice my UI skills and React Hooks.
 
-![Screenshot from the App](https://i.imgur.com/cH0BxdH.png)
+<img src="https://i.imgur.com/cH0BxdH.png" alt="drawing" width="500"/>
 
 ## Live version
 
