@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import mapIcon from "./map-pin.svg";
 import mapIconDisabled from "./map-pin-disabled.svg";
 import loadingIcon from "../SearchBar/loader.svg";
