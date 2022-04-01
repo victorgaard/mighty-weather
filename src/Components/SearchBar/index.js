@@ -1,15 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import SearchResults from "../SearchResults";
 import searchIcon from "./search.svg";
 import loadingIcon from "./loader.svg";
 
-function SearchBar({ 
+function SearchBar({
     getWeather,
-    setLoading, }) {
+    setLoading,
+    searchValue,
+    setSearchValue }) {
 
     const [icon, setIcon] = useState("search");
-    const [cityResults, setCityResults] = useState();
-    const [latLon, setLatLon] = useState();
+    const [cityResults, setCityResults] = useState(null);
+    const [searchHasAnyValue, setSearchHasAnyValue] = useState(false);
+    const [latLon, setLatLon] = useState(null);
+    const [feedbackMsg, setFeedbackMessage] = useState("");
+    const [resultsVisible, setResultsVisible] = useState(false);
+
+    const searchBar = useRef(null);
+    const searchResult = useRef(null);
 
     useEffect(() => {
         if (latLon) {
@@ -20,17 +28,58 @@ function SearchBar({
         }
     }, [latLon]);
 
+    useEffect(() => {
+        let timeout;
+
+        if (!searchValue) {
+            setIcon("search");
+            setFeedbackMessage("");
+        }
+
+        if (searchValue) {
+            const searchSplit = searchValue.split("-")
+
+            // Check if search value is user input
+            // or the formatted response
+            if (searchSplit.length === 1) {
+
+                // Loading icon appears
+                // Clean search icon hidden
+                setIcon("loading");
+                setSearchHasAnyValue(false);
+
+                // Handle search after 
+                // user input timeout
+                timeout = setTimeout(() => {
+                    searchCity(searchValue);
+                }, 1000);
+            }
+        }
+
+        return () => {
+            clearTimeout(timeout);
+        }
+
+    }, [searchValue]);
+
+    useEffect(() => {
+        window.addEventListener("mousedown", handleClickOutside);
+
+        return () => {
+            window.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [searchBar]);
+
     // Search for a city on OpenWeather API,
     // then return the cities found
     async function searchCity(city) {
-        document.getElementById("validation").innerHTML = "";
+        setFeedbackMessage("");
 
         if (!city) {
             return;
         }
 
         try {
-            console.log('fetchei')
             const response = await fetch(`${process.env.REACT_APP_URL_OW_GC}${city}&limit=5&appid=${process.env.REACT_APP_API_KEY_OW}`);
 
             if (response.ok) {
@@ -39,7 +88,7 @@ function SearchBar({
                 setCityResults(responseJson);
 
                 if (responseJson.length === 0) {
-                    document.getElementById("validation").innerHTML = `${city} was not found.`;
+                    setFeedbackMessage(`${city} was not found.`);
                 };
             };
 
@@ -48,57 +97,51 @@ function SearchBar({
         };
     };
 
-    // Wait 1s after the user has stopped 
-    // typing to make the search
-    let timeout;
-    function handleKeyUp({ target }) {
-        clearTimeout(timeout);
-
-        timeout = setTimeout(() => {
-            searchCity(target.value);
-        }, 1000)
-    };
-
     // Make loading icon visibile 
     // when the user is typing
     function handleChange({ target }) {
-        if (target.value.length === 0) {
-            setIcon("search");
-            return;
-
-        } else {
-            setIcon("loading");
-        }
-    }
+        setSearchValue(target.value);
+    };
 
     // Make the search results div re-appear
     // when user clicks back to SearchBar input
     function handleFocus() {
-        document.getElementById("SearchBar__results").style.display = "block";
+        setResultsVisible(true);
     }
 
     // When the user clicks outside of the
     // SearchBar div, the results disappear
-    function hideSearch() {
-        document.getElementById("SearchBar__results").style.display = "none";
+    function handleClickOutside({ target }) {
+        if (searchBar.current && !searchBar.current.contains(target)) {
+            hideResults();
+        }
     }
 
-    // Monitoring clicks outside of SearchBar div
-    document.addEventListener('click', function (event) {
-        const ignoreClickOnMeElement = document.querySelector(".SearchBar");
-        const isClickInsideElement = ignoreClickOnMeElement.contains(event.target);
+    function hideResults() {
+        setResultsVisible(false);
+    }
 
-        if (!isClickInsideElement) {
-            hideSearch();
-        }
-    });
+    function handleClose() {
+        setSearchHasAnyValue(false);
+        setSearchValue("");
+    }
 
     return (
-        <div className="SearchBar">
-            <img
-                src={searchIcon}
-                alt="Search"
-                className="SearchBar__img--search" />
+        <div className="SearchBar" ref={searchBar}>
+            {searchHasAnyValue ?
+                <button
+                    className="SearchBar__close"
+                    onClick={handleClose}>
+                    &times;
+                </button>
+
+                :
+
+                <img
+                    src={searchIcon}
+                    alt="Search"
+                    className="SearchBar__img--search" />
+            }
 
             {icon === "loading" &&
                 <img
@@ -111,15 +154,27 @@ function SearchBar({
                 className="SearchBar__input"
                 placeholder="Search your city"
                 autoComplete="off"
+                value={searchValue}
                 onChange={handleChange}
-                onKeyUp={handleKeyUp}
                 onFocus={handleFocus} />
 
-            <SearchResults
-                cityResults={cityResults}
-                setLatLon={setLatLon} />
+            {cityResults ? resultsVisible ?
+                <SearchResults
+                    ref={searchResult}
+                    cityResults={cityResults}
+                    setSearchValue={setSearchValue}
+                    setSearchHasAnyValue={setSearchHasAnyValue}
+                    setLatLon={setLatLon} />
+                :
 
-            <p id="validation"></p>
+                ""
+
+                :
+
+                ""
+            }
+
+            <p>{feedbackMsg}</p>
         </div>
     )
 }

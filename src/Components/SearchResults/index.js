@@ -2,14 +2,17 @@ import React from "react";
 
 function SearchResults({
     cityResults,
-    setLatLon }) {
+    setLatLon,
+    setSearchHasAnyValue,
+    setSearchValue }) {
 
     // When a button is clicked, the value is transferred to the input
     // Saves latitude and longitude from the clicked button
 
     function handleClick({ target }) {
-        document.getElementById("SearchBar").value = target.innerHTML;
+        setSearchValue(target.innerHTML);
         setLatLon([target.getAttribute("lat"), target.getAttribute("lon")]);
+        setSearchHasAnyValue(true);
     }
 
     return (

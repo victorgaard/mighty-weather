@@ -7,7 +7,9 @@ function Navbar({
     permissionCoord,
     getCoordinates,
     getWeather,
-    setLoading }) {
+    setLoading,
+    searchValue,
+    setSearchValue }) {
 
     return (
         <div className="Nav">
@@ -18,7 +20,9 @@ function Navbar({
 
             <SearchBar
                 getWeather={getWeather}
-                setLoading={setLoading} />
+                setLoading={setLoading}
+                searchValue={searchValue}
+                setSearchValue={setSearchValue} />
         </div>
     )
 }

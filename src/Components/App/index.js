@@ -6,10 +6,11 @@ import './App.css';
 function App() {
 	
 	const [weather, setWeather] = useState(null);
-	const [timezone, setTimezone] = useState();
+	const [timezone, setTimezone] = useState(null);
 	const [loading, setLoading] = useState(false);
 	const [loadingCoord, setLoadingCoord] = useState(false);
 	const [permissionCoord, setPermissionCoord] = useState(true);
+	const [searchValue, setSearchValue] = useState("");
 
 	useEffect(() => {
 		setTimeout(() => {
@@ -21,7 +22,7 @@ function App() {
 	// Get the user location 
 	// from the browser API
 	function getCoordinates() {
-		document.getElementById("SearchBar").value = "";
+		setSearchValue("");
 
 		const options = {
 			enableHighAccuracy: true,
@@ -109,7 +110,9 @@ function App() {
 					permissionCoord={permissionCoord}
 					getCoordinates={getCoordinates}
 					getWeather={getWeather}
-					setLoading={setLoading} />
+					setLoading={setLoading}
+					searchValue={searchValue}
+					setSearchValue={setSearchValue} />
 
 				<Body
 					weather={weather}
