@@ -9,7 +9,9 @@ function Navbar({
     getWeather,
     setLoading,
     searchValue,
-    setSearchValue }) {
+    setSearchValue,
+    searchHasAnyValue,
+    setSearchHasAnyValue }) {
 
     return (
         <div className="Nav">
@@ -22,7 +24,9 @@ function Navbar({
                 getWeather={getWeather}
                 setLoading={setLoading}
                 searchValue={searchValue}
-                setSearchValue={setSearchValue} />
+                setSearchValue={setSearchValue}
+                searchHasAnyValue={searchHasAnyValue}
+                setSearchHasAnyValue={setSearchHasAnyValue} />
         </div>
     )
 }

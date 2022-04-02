@@ -7,14 +7,16 @@ function SearchBar({
     getWeather,
     setLoading,
     searchValue,
-    setSearchValue }) {
+    setSearchValue,
+    searchHasAnyValue,
+    setSearchHasAnyValue }) {
 
     const [icon, setIcon] = useState("search");
     const [cityResults, setCityResults] = useState(null);
-    const [searchHasAnyValue, setSearchHasAnyValue] = useState(false);
     const [latLon, setLatLon] = useState(null);
     const [feedbackMsg, setFeedbackMessage] = useState("");
     const [resultsVisible, setResultsVisible] = useState(false);
+    const [cursor, setCursor] = useState(-1);
 
     const searchBar = useRef(null);
     const searchResult = useRef(null);
@@ -126,6 +128,25 @@ function SearchBar({
         setSearchValue("");
     }
 
+    // Voltar daqui, deu ruim em tudo entendemo nada dessa porra
+    
+    function handleKeyboardNavigation(event) {
+        if (cityResults && event.key === "ArrowDown") {
+            setCursor(c => (c < cityResults.length - 1 ? c + 1 : c))
+            console.log('foi pa baixo', cursor)
+        }
+
+        if (cityResults && event.key === "ArrowUp") {
+            setCursor(c => (c > 0 ? c - 1 : c))
+            console.log('foi pa cima', cursor)
+        }
+/* 
+        if (event.key === "Escape") {
+            console.log('deu esc')
+            hideResults();
+        } */
+    }
+
     return (
         <div className="SearchBar" ref={searchBar}>
             {searchHasAnyValue ?
@@ -156,15 +177,17 @@ function SearchBar({
                 autoComplete="off"
                 value={searchValue}
                 onChange={handleChange}
+                onKeyDown={handleKeyboardNavigation} 
                 onFocus={handleFocus} />
 
             {cityResults ? resultsVisible ?
-                <SearchResults
-                    ref={searchResult}
-                    cityResults={cityResults}
-                    setSearchValue={setSearchValue}
-                    setSearchHasAnyValue={setSearchHasAnyValue}
-                    setLatLon={setLatLon} />
+                <div ref={searchResult}>
+                    <SearchResults
+                        cityResults={cityResults}
+                        setSearchValue={setSearchValue}
+                        setSearchHasAnyValue={setSearchHasAnyValue}
+                        setLatLon={setLatLon} />
+                </div>
                 :
 
                 ""

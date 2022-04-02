@@ -11,6 +11,7 @@ function App() {
 	const [loadingCoord, setLoadingCoord] = useState(false);
 	const [permissionCoord, setPermissionCoord] = useState(true);
 	const [searchValue, setSearchValue] = useState("");
+	const [searchHasAnyValue, setSearchHasAnyValue] = useState(false);
 
 	useEffect(() => {
 		setTimeout(() => {
@@ -22,7 +23,6 @@ function App() {
 	// Get the user location 
 	// from the browser API
 	function getCoordinates() {
-		setSearchValue("");
 
 		const options = {
 			enableHighAccuracy: true,
@@ -31,6 +31,8 @@ function App() {
 		};
 
 		function success(pos) {
+			setSearchValue("");
+			setSearchHasAnyValue(false);
 			setLoadingCoord(true);
 			setPermissionCoord(true);
 			setLoading(true);
@@ -112,7 +114,9 @@ function App() {
 					getWeather={getWeather}
 					setLoading={setLoading}
 					searchValue={searchValue}
-					setSearchValue={setSearchValue} />
+					setSearchValue={setSearchValue}
+					searchHasAnyValue={searchHasAnyValue}
+					setSearchHasAnyValue={setSearchHasAnyValue} />
 
 				<Body
 					weather={weather}
