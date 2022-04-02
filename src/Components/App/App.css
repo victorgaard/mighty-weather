@@ -18,7 +18,7 @@
   }
 }
 
-@keyframes fadeInUp {
+@keyframes fadeInDown {
   from {
     transform: translateY(-2%);
     opacity: 0;
@@ -29,7 +29,7 @@
   }
 }
 
-@keyframes fadeInDown {
+@keyframes fadeInUp {
   from {
     transform: translateY(2%);
     opacity: 0;
@@ -121,7 +121,7 @@ p {
 }
 
 .Nav__coords--denied {
-  animation: fadeInUp 0.3s;
+  animation: fadeInDown 0.3s;
   position: absolute;
   gap: 8px;
   display: flex;
@@ -250,11 +250,11 @@ p {
 }
 
 .Body__wrapper {
-  animation: fadeInUp 0.5s;
+  animation: fadeInDown 0.5s;
 }
 
 .Skeleton__wrapper {
-  animation: fadeInDown 0.5s;
+  animation: fadeInUp 0.5s;
 }
 
 .Skeleton {
