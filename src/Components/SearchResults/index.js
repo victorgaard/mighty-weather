@@ -5,7 +5,9 @@ function SearchResults({
   setLatLon,
   setSearchHasAnyValue,
   setSearchValue,
+  cursor,
 }) {
+
   // When a button is clicked, the value is transferred to the input
   // Saves latitude and longitude from the clicked button
 
@@ -21,7 +23,7 @@ function SearchResults({
         cityResults.map((city, index) => {
           return (
             <button
-              className="SearchBar__results--button"
+              className={`SearchBar__results--button ${index === cursor ? "active" : ""}`}
               key={index}
               lat={city.lat}
               lon={city.lon}

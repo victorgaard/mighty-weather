@@ -19,7 +19,6 @@ function SearchBar({
   const [cursor, setCursor] = useState(-1);
 
   const searchBar = useRef(null);
-  const searchResult = useRef(null);
 
   useEffect(() => {
     if (latLon) {
@@ -43,18 +42,24 @@ function SearchBar({
 
       // Check if search value is user input
       // or the formatted response
-      if (searchSplit.length === 1) {
-        // Loading icon appears
-        // Clean search icon hidden
-        setIcon("loading");
-        setSearchHasAnyValue(false);
-
-        // Handle search after
-        // user input timeout
-        timeout = setTimeout(() => {
-          searchCity(searchValue);
-        }, 1000);
+      if (
+        searchSplit.length >= 3 &&
+        searchSplit[searchSplit.length - 1].length === 3
+      ) {
+        setIcon("search");
+        return;
       }
+
+      // Loading icon appears
+      // Clean search icon hidden
+      setIcon("loading");
+      setSearchHasAnyValue(false);
+
+      // Handle search after
+      // user input timeout
+      timeout = setTimeout(() => {
+        searchCity(searchValue);
+      }, 1000);
     }
 
     return () => {
@@ -122,34 +127,30 @@ function SearchBar({
     setResultsVisible(false);
   }
 
-  function handleClose() {
+  function handleClean() {
     setSearchHasAnyValue(false);
     setSearchValue("");
   }
 
-  // Voltar daqui, deu ruim em tudo entendemo nada dessa porra
-
   function handleKeyboardNavigation(event) {
     if (cityResults && event.key === "ArrowDown") {
       setCursor((c) => (c < cityResults.length - 1 ? c + 1 : c));
-      console.log("foi pa baixo", cursor);
     }
 
     if (cityResults && event.key === "ArrowUp") {
       setCursor((c) => (c > 0 ? c - 1 : c));
-      console.log("foi pa cima", cursor);
     }
-    /* 
-        if (event.key === "Escape") {
-            console.log('deu esc')
-            hideResults();
-        } */
+
+    if (cityResults && event.key === "Enter") {
+      document.querySelector(".active").click();
+      setCursor(-1);
+    }
   }
 
   return (
     <div className="SearchBar" ref={searchBar}>
       {searchHasAnyValue ? (
-        <button className="SearchBar__close" onClick={handleClose}>
+        <button className="SearchBar__clean" onClick={handleClean}>
           &times;
         </button>
       ) : (
@@ -177,14 +178,13 @@ function SearchBar({
 
       {cityResults ? (
         resultsVisible ? (
-          <div ref={searchResult}>
-            <SearchResults
-              cityResults={cityResults}
-              setSearchValue={setSearchValue}
-              setSearchHasAnyValue={setSearchHasAnyValue}
-              setLatLon={setLatLon}
-            />
-          </div>
+          <SearchResults
+            cityResults={cityResults}
+            setSearchValue={setSearchValue}
+            setSearchHasAnyValue={setSearchHasAnyValue}
+            setLatLon={setLatLon}
+            cursor={cursor}
+          />
         ) : (
           ""
         )

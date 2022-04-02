@@ -175,7 +175,7 @@ p {
   margin-left: 276px;
 }
 
-.SearchBar__close {
+.SearchBar__clean {
   position: absolute;
   top: 40px;
   margin-left: 16px;
@@ -188,7 +188,7 @@ p {
   height: 22px;
 }
 
-.SearchBar__close:hover {
+.SearchBar__clean:hover {
   background-color: #96a7af;
 }
 
@@ -231,6 +231,10 @@ p {
 .SearchBar__results--button:focus {
   border: 2px solid #96a7af;
   outline: none;
+}
+
+.SearchBar__results--button.active {
+  background-color: #3a5460;
 }
 
 .hide {
