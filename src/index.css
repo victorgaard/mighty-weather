@@ -1,14 +1,14 @@
 body {
-  background-color: #1F2E35;
-  font-family: 'Manrope', sans-serif;
+  background-color: #1f2e35;
+  font-family: "Manrope", sans-serif;
   font-weight: 700;
 }
 
-input, 
-select, 
-textarea, 
+input,
+select,
+textarea,
 button {
-  font-family:inherit;
-  font-weight:inherit;
-  transition: .2s ease;;
+  font-family: inherit;
+  font-weight: inherit;
+  transition: 0.2s ease;
 }

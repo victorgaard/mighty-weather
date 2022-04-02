@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: .5s ease;
+  transition: 0.5s ease;
 }
 
 .Container {
@@ -54,19 +54,19 @@
 
 h1 {
   font-size: 5rem;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 h2 {
   font-size: 1.5rem;
   line-height: 2rem;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 p {
   font-size: 1rem;
   font-weight: 600;
-  color: #96A7AF;
+  color: #96a7af;
   line-height: 1.5rem;
 }
 
@@ -86,7 +86,7 @@ p {
 }
 
 .Nav__button:hover {
-  background-color: #197D66;
+  background-color: #197d66;
   box-shadow: 0px 2px 10px rgba(61, 213, 152, 0.3);
 }
 
@@ -99,7 +99,7 @@ p {
   height: 54px;
   border-radius: 4px;
   flex-shrink: 0;
-  background-color: #19262C;
+  background-color: #19262c;
 }
 
 .Nav__button--denied {
@@ -108,7 +108,7 @@ p {
   height: 54px;
   border-radius: 4px;
   flex-shrink: 0;
-  background-color: #623A42;
+  background-color: #623a42;
 }
 
 .Nav__button--denied:hover {
@@ -116,7 +116,7 @@ p {
   box-shadow: 0px 2px 10px rgb(255, 87, 95, 0.3);
 }
 
-.Nav__button--denied:hover + .Nav__coords--denied  {
+.Nav__button--denied:hover + .Nav__coords--denied {
   display: block;
 }
 
@@ -125,12 +125,12 @@ p {
   position: absolute;
   gap: 8px;
   display: flex;
-  background: #30444E;
+  background: #30444e;
   padding: 12px 16px 16px 16px;
   width: 384px;
   top: 88px;
   border-radius: 4px;
-  box-shadow: 0 10px 30px rgb(0,0,0,.15);
+  box-shadow: 0 10px 30px rgb(0, 0, 0, 0.15);
   display: none;
 }
 
@@ -139,9 +139,9 @@ p {
 }
 
 .SearchBar__input {
-  background-color: #19262C;
-  border: 2px solid #30444E;
-  color: #96A7AF;
+  background-color: #19262c;
+  border: 2px solid #30444e;
+  color: #96a7af;
   padding: 14px 48px 14px 48px;
   font-size: 1rem;
   border-radius: 4px;
@@ -149,18 +149,18 @@ p {
 }
 
 .SearchBar__input:hover {
-  border-color: #475E69;
+  border-color: #475e69;
 }
 
 .SearchBar__input:active,
 .SearchBar__input:focus-visible,
 .SearchBar__input:focus {
-  border-color: #96A7AF;
-  outline: #96A7AF;
+  border-color: #96a7af;
+  outline: #96a7af;
 }
 
 .SearchBar__input::placeholder {
-  color: #96A7AF;
+  color: #96a7af;
 }
 
 .SearchBar__img--search {
@@ -172,15 +172,15 @@ p {
 .SearchBar__img--loading {
   position: absolute;
   top: 40px;
-  margin-left: 276px
+  margin-left: 276px;
 }
 
 .SearchBar__close {
   position: absolute;
   top: 40px;
   margin-left: 16px;
-  background: #475E69;
-  color: #19262C;
+  background: #475e69;
+  color: #19262c;
   cursor: pointer;
   border-radius: 50%;
   font-size: 1.4rem;
@@ -189,7 +189,7 @@ p {
 }
 
 .SearchBar__close:hover {
-  background-color: #96A7AF;
+  background-color: #96a7af;
 }
 
 .SearchBar__results {
@@ -200,21 +200,21 @@ p {
   z-index: 10;
   width: 100%;
   max-width: 314px;
-  box-shadow: 0 10px 30px rgb(0,0,0,.4);
+  box-shadow: 0 10px 30px rgb(0, 0, 0, 0.4);
 }
 
 .SearchBar__results--button {
   overflow: hidden;
-  background-color: #30444E;
-  color: #FFFFFF;
+  background-color: #30444e;
+  color: #ffffff;
   height: 54px;
   width: 100%;
   cursor: pointer;
   padding: 0 20px;
-  border-bottom: 2px solid #1F2E35;
+  border-bottom: 2px solid #1f2e35;
   text-align: left;
   text-overflow: ellipsis;
-  white-space: nowrap; 
+  white-space: nowrap;
 }
 
 .SearchBar__results--button:last-child {
@@ -229,7 +229,7 @@ p {
 .SearchBar__results--button:active,
 .SearchBar__results--button:focus-visible,
 .SearchBar__results--button:focus {
-  border: 2px solid #96A7AF;
+  border: 2px solid #96a7af;
   outline: none;
 }
 
@@ -361,13 +361,13 @@ p {
 
   .SearchBar__img--loading {
     top: 40px;
-    right: 40px
+    right: 40px;
   }
-  
+
   .SearchBar__results {
     width: 70vw;
   }
-  
+
   .SearchBar__results--button {
     width: 100%;
   }
