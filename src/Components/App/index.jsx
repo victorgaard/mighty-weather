@@ -127,10 +127,7 @@ function App() {
           setSearchHasAnyValue={setSearchHasAnyValue}
         />
 
-        <Body 
-          weather={weather}
-          loading={loading}
-          timezone={timezone} />
+        <Body weather={weather} loading={loading} timezone={timezone} />
       </div>
     </div>
   );

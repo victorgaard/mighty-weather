@@ -78,4 +78,4 @@ export const getIcon = (id) => {
 
   if (!result) throw new Error('something went wrong');
   return isHighRes ? retinaResult : result;
-}
+};
