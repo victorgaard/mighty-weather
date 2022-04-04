@@ -33,4 +33,4 @@ function Location({ loadingCoord, permissionCoord, getCoordinates }) {
   );
 }
 
-export default Location;
+export { Location };

@@ -1,5 +1,5 @@
 import React from "react";
-import Skeleton from "../Skeleton";
+import { Skeleton } from "../Skeleton";
 
 function Loading() {
   return (
@@ -15,4 +15,4 @@ function Loading() {
   );
 }
 
-export default Loading;
+export { Loading };

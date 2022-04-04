@@ -37,4 +37,4 @@ function SearchResults({
   );
 }
 
-export default SearchResults;
+export { SearchResults };

@@ -1,7 +1,7 @@
 import React from 'react';
-import EmptyState from '../EmptyState';
-import Loading from '../Loading';
-import ResolvedState from '../ResolvedState';
+import { EmptyState } from '../EmptyState';
+import { Loading } from '../Loading';
+import { ResolvedState } from '../ResolvedState';
 import { getCurrentDate } from '../util/GetDate';
 import { getIcon } from '../util/GetIcon';
 
@@ -26,4 +26,4 @@ function Body({ weather, loading, timezone }) {
   );
 }
 
-export default Body;
+export { Body };

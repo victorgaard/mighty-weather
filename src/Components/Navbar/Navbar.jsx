@@ -1,6 +1,6 @@
 import React from "react";
-import Location from "../Location";
-import SearchBar from "../SearchBar";
+import { Location } from "../Location";
+import { SearchBar } from "../SearchBar";
 
 function Navbar({
   loadingCoord,
@@ -33,4 +33,4 @@ function Navbar({
   );
 }
 
-export default Navbar;
+export { Navbar };

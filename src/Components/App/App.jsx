@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Body from '../Body';
-import Navbar from '../Navbar';
+import { Body } from '../Body';
+import { Navbar } from '../Navbar';
 import './App.css';
 
 function App() {
@@ -133,4 +133,4 @@ function App() {
   );
 }
 
-export default App;
+export { App };

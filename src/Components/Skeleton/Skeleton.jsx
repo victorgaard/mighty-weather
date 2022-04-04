@@ -10,4 +10,4 @@ function Skeleton({ type }) {
   );
 }
 
-export default Skeleton;
+export { Skeleton };

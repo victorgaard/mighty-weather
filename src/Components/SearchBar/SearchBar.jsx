@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import SearchResults from '../SearchResults';
+import { SearchResults } from '../SearchResults';
 import searchIcon from './search.svg';
 import loadingIcon from './loader.svg';
 
@@ -197,4 +197,4 @@ function SearchBar({
   );
 }
 
-export default SearchBar;
+export { SearchBar };

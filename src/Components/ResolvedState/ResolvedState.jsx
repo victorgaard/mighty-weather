@@ -32,4 +32,4 @@ function ResolvedState({ weather, getCurrentDate, timezone, getIcon }) {
   );
 }
 
-export default ResolvedState;
+export { ResolvedState };
