@@ -1,6 +1,8 @@
 import React from "react";
+import iconEmpty from '../util/GetIcon/assets/iconEmpty.png';
+import iconEmptyb from '../util/GetIcon/assets/iconEmpty@2x.png';
 
-function EmptyState({ getIcon }) {
+function EmptyState() {
   return (
     <>
       <div className="Body__empty-h2">
@@ -8,7 +10,7 @@ function EmptyState({ getIcon }) {
       </div>
 
       <div className="Body__img">
-        <img src={getIcon("empty")} alt="Temperature" />
+        <img src={iconEmpty} srcSet={`${iconEmptyb} 1x, ${iconEmptyb} 2x`} alt="Temperature" />
       </div>
 
       <div className="Body__empty">

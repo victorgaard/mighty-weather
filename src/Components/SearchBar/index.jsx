@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useRef } from "react";
-import SearchResults from "../SearchResults";
-import searchIcon from "./search.svg";
-import loadingIcon from "./loader.svg";
+import React, { useEffect, useState, useRef } from 'react';
+import SearchResults from '../SearchResults';
+import searchIcon from './search.svg';
+import loadingIcon from './loader.svg';
 
 function SearchBar({
   getWeather,
@@ -11,10 +11,10 @@ function SearchBar({
   searchHasAnyValue,
   setSearchHasAnyValue,
 }) {
-  const [icon, setIcon] = useState("search");
+  const [icon, setIcon] = useState('search');
   const [cityResults, setCityResults] = useState(null);
   const [latLon, setLatLon] = useState(null);
-  const [feedbackMsg, setFeedbackMessage] = useState("");
+  const [feedbackMsg, setFeedbackMessage] = useState('');
   const [resultsVisible, setResultsVisible] = useState(false);
   const [cursor, setCursor] = useState(-1);
 
@@ -33,12 +33,12 @@ function SearchBar({
     let timeout;
 
     if (!searchValue) {
-      setIcon("search");
-      setFeedbackMessage("");
+      setIcon('search');
+      setFeedbackMessage('');
     }
 
     if (searchValue) {
-      const searchSplit = searchValue.split("-");
+      const searchSplit = searchValue.split('-');
 
       // Check if search value is user input
       // or the formatted response
@@ -46,13 +46,13 @@ function SearchBar({
         searchSplit.length >= 3 &&
         searchSplit[searchSplit.length - 1].length === 3
       ) {
-        setIcon("search");
+        setIcon('search');
         return;
       }
 
       // Loading icon appears
       // Clean search icon hidden
-      setIcon("loading");
+      setIcon('loading');
       setSearchHasAnyValue(false);
 
       // Handle search after
@@ -68,17 +68,17 @@ function SearchBar({
   }, [searchValue]);
 
   useEffect(() => {
-    window.addEventListener("mousedown", handleClickOutside);
+    window.addEventListener('mousedown', handleClickOutside);
 
     return () => {
-      window.removeEventListener("mousedown", handleClickOutside);
+      window.removeEventListener('mousedown', handleClickOutside);
     };
   }, [searchBar]);
 
   // Search for a city on OpenWeather API,
   // then return the cities found
   async function searchCity(city) {
-    setFeedbackMessage("");
+    setFeedbackMessage('');
 
     if (!city) {
       return;
@@ -90,7 +90,7 @@ function SearchBar({
       );
 
       if (response.ok) {
-        setIcon("search");
+        setIcon('search');
         const responseJson = await response.json();
         setCityResults(responseJson);
 
@@ -129,20 +129,20 @@ function SearchBar({
 
   function handleClean() {
     setSearchHasAnyValue(false);
-    setSearchValue("");
+    setSearchValue('');
   }
 
   function handleKeyboardNavigation(event) {
-    if (cityResults && event.key === "ArrowDown") {
+    if (cityResults && event.key === 'ArrowDown') {
       setCursor((c) => (c < cityResults.length - 1 ? c + 1 : c));
     }
 
-    if (cityResults && event.key === "ArrowUp") {
+    if (cityResults && event.key === 'ArrowUp') {
       setCursor((c) => (c > 0 ? c - 1 : c));
     }
 
-    if (cityResults && event.key === "Enter") {
-      document.querySelector(".active").click();
+    if (cityResults && event.key === 'Enter') {
+      document.querySelector('.active').click();
       setCursor(-1);
     }
   }
@@ -157,7 +157,7 @@ function SearchBar({
         <img src={searchIcon} alt="Search" className="SearchBar__img--search" />
       )}
 
-      {icon === "loading" && (
+      {icon === 'loading' && (
         <img
           src={loadingIcon}
           alt="Loading..."
@@ -186,10 +186,10 @@ function SearchBar({
             cursor={cursor}
           />
         ) : (
-          ""
+          ''
         )
       ) : (
-        ""
+        ''
       )}
 
       <p>{feedbackMsg}</p>

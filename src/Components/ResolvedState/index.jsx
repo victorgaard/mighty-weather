@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 function ResolvedState({ weather, getCurrentDate, timezone, getIcon }) {
   return (
@@ -6,8 +6,8 @@ function ResolvedState({ weather, getCurrentDate, timezone, getIcon }) {
       <h2>{weather.city}</h2>
 
       <div className="Body__title">
-        <p>{getCurrentDate("date", timezone)}</p>
-        <p>{getCurrentDate("time", timezone)}</p>
+        <p>{getCurrentDate('date', timezone)}</p>
+        <p>{getCurrentDate('time', timezone)}</p>
       </div>
 
       <div className="Body__img--active">

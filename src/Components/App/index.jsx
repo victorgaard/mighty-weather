@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import Body from "../Body";
-import Navbar from "../Navbar";
-import "./App.css";
+import React, { useState, useEffect } from 'react';
+import Body from '../Body';
+import Navbar from '../Navbar';
+import './App.css';
 
 function App() {
   const [weather, setWeather] = useState(null);
@@ -9,7 +9,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [loadingCoord, setLoadingCoord] = useState(false);
   const [permissionCoord, setPermissionCoord] = useState(true);
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState('');
   const [searchHasAnyValue, setSearchHasAnyValue] = useState(false);
 
   useEffect(() => {
@@ -29,7 +29,7 @@ function App() {
     };
 
     function success(pos) {
-      setSearchValue("");
+      setSearchValue('');
       setSearchHasAnyValue(false);
       setLoadingCoord(true);
       setPermissionCoord(true);
@@ -46,23 +46,6 @@ function App() {
     }
 
     navigator.geolocation.getCurrentPosition(success, error, options);
-  }
-
-  // Get the timezone of a location's
-  // latitude and longitude
-  async function getTimezone(lat, lon) {
-    try {
-      const response = await fetch(
-        `${process.env.REACT_APP_URL_OW_TZ}&lat=${lat}&lon=${lon}&exclude=hourly,daily,minutely&units=metric&appid=${process.env.REACT_APP_API_KEY_OW}`
-      );
-
-      if (response.ok) {
-        const responseJson = await response.json();
-        setTimezone(responseJson.timezone);
-      }
-    } catch (error) {
-      return console.log(error);
-    }
   }
 
   // Get the weather forecast from
@@ -112,6 +95,23 @@ function App() {
     }
   }
 
+  // Get the timezone of a location's
+  // latitude and longitude
+  async function getTimezone(lat, lon) {
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_URL_OW_TZ}&lat=${lat}&lon=${lon}&exclude=hourly,daily,minutely&units=metric&appid=${process.env.REACT_APP_API_KEY_OW}`
+      );
+
+      if (response.ok) {
+        const responseJson = await response.json();
+        setTimezone(responseJson.timezone);
+      }
+    } catch (error) {
+      return console.log(error);
+    }
+  }
+
   return (
     <div className="App">
       <div className="Container">
@@ -127,7 +127,10 @@ function App() {
           setSearchHasAnyValue={setSearchHasAnyValue}
         />
 
-        <Body weather={weather} loading={loading} timezone={timezone} />
+        <Body 
+          weather={weather}
+          loading={loading}
+          timezone={timezone} />
       </div>
     </div>
   );

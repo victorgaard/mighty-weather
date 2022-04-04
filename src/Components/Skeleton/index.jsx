@@ -5,7 +5,7 @@ function Skeleton({ type }) {
 
   return (
     <div className="Skeleton__wrapper">
-      <div className={classes}></div>
+      <div className={classes}> </div>
     </div>
   );
 }

@@ -20,7 +20,7 @@ function Body({ weather, loading, timezone }) {
           />
         )
       ) : (
-        <EmptyState getIcon={getIcon} />
+        <EmptyState />
       )}
     </div>
   );

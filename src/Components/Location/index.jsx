@@ -1,7 +1,7 @@
-import React from "react";
-import mapIcon from "./map-pin.svg";
-import mapIconDisabled from "./map-pin-disabled.svg";
-import loadingIcon from "../SearchBar/loader.svg";
+import React from 'react';
+import mapIcon from './map-pin.svg';
+import mapIconDisabled from './map-pin-disabled.svg';
+import loadingIcon from '../SearchBar/loader.svg';
 
 function Location({ loadingCoord, permissionCoord, getCoordinates }) {
   return (
