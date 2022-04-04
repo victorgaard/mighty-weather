@@ -13,7 +13,7 @@
 
 # misc
 .env
-.prettier
+.prettierrc
 .prettierignore
 .DS_Store
 .env.local
