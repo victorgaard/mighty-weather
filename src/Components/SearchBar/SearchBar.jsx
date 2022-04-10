@@ -43,7 +43,7 @@ function SearchBar({
       // Check if search value is user input
       // or the formatted response
       if (
-        searchSplit.length >= 3 &&
+        searchSplit.length >= 2 &&
         searchSplit[searchSplit.length - 1].length === 3
       ) {
         setIcon('search');
